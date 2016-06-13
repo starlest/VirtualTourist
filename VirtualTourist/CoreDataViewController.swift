@@ -30,7 +30,6 @@ class CoreDataViewController: UIViewController {
     func executeSearch() {
         if let fc = fetchedResultsController {
             do {
-                print("trying to fetch")
                 try fc.performFetch()
             } catch let e as NSError {
                 print("Error while trying to perform a search: \n\(e)\n\(fetchedResultsController)")

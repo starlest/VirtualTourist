@@ -4,18 +4,26 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/VirtualTouristTests/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VirtualTouristTests/VirtualTouristTests.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VirtualTouristUITests/VirtualTouristUITests.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VirtualTouristUITests/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/AppDelegate.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Client+Constants.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/CoreDataStack.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Pin.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Assets.xcassets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Photo.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Client.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/TravelLocationsMapViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/PhotoAlbumViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Assets.xcassets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/TravelLocationsMapViewController+Helpers.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/AppDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/CoreDataViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Client+Constants.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Base.lproj/Main.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Model.xcdatamodeld/Model 2.xcdatamodel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Model.xcdatamodeld/Model.xcdatamodel" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/Photo+CoreDataProperties.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTourist/CoreDataStack.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTouristUITests/VirtualTouristUITests.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VirtualTouristUITests/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pin+CoreDataProperties.swift" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

@@ -25,6 +25,7 @@
 		6D1195961D0EA78700202307 /* TravelLocationsMapViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195951D0EA78700202307 /* TravelLocationsMapViewController+Helpers.swift */; };
 		6D1195981D0EA85C00202307 /* CoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195971D0EA85C00202307 /* CoreDataViewController.swift */; };
 		6D11959E1D0EAB5900202307 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11959A1D0EAB5900202307 /* Pin+CoreDataProperties.swift */; };
+		6D1195A41D0EBBDD00202307 /* CoreDataStack+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195A31D0EBBDD00202307 /* CoreDataStack+Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		6D1195971D0EA85C00202307 /* CoreDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataViewController.swift; sourceTree = "<group>"; };
 		6D1195991D0EAB3700202307 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		6D11959A1D0EAB5900202307 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6D1195A31D0EBBDD00202307 /* CoreDataStack+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+Utilities.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,9 +164,8 @@
 		6D11957E1D0E53B300202307 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6D1195931D0EA6F200202307 /* Core Data */,
+				6D1195931D0EA6F200202307 /* CoreData */,
 				6D1195851D0E60F000202307 /* Client */,
-				6D11957F1D0E591400202307 /* CoreDataStack.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -178,16 +179,17 @@
 			name = Client;
 			sourceTree = "<group>";
 		};
-		6D1195931D0EA6F200202307 /* Core Data */ = {
+		6D1195931D0EA6F200202307 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				6D1195A21D0EBBC900202307 /* CoreDataStack */,
 				6D11958B1D0EA6ED00202307 /* Photo+CoreDataProperties.swift */,
 				6D11959A1D0EAB5900202307 /* Pin+CoreDataProperties.swift */,
 				6D11958C1D0EA6ED00202307 /* Photo.swift */,
 				6D11958E1D0EA6ED00202307 /* Pin.swift */,
 				6D1195861D0E9B2000202307 /* Model.xcdatamodeld */,
 			);
-			name = "Core Data";
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		6D1195941D0EA75900202307 /* TravelLocationsMapViewController */ = {
@@ -197,6 +199,15 @@
 				6D1195951D0EA78700202307 /* TravelLocationsMapViewController+Helpers.swift */,
 			);
 			name = TravelLocationsMapViewController;
+			sourceTree = "<group>";
+		};
+		6D1195A21D0EBBC900202307 /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				6D11957F1D0E591400202307 /* CoreDataStack.swift */,
+				6D1195A31D0EBBDD00202307 /* CoreDataStack+Utilities.swift */,
+			);
+			name = CoreDataStack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,6 +354,7 @@
 				6D1195501D0E431E00202307 /* AppDelegate.swift in Sources */,
 				6D11958F1D0EA6ED00202307 /* Photo+CoreDataProperties.swift in Sources */,
 				6D1195881D0E9B2000202307 /* Model.xcdatamodeld in Sources */,
+				6D1195A41D0EBBDD00202307 /* CoreDataStack+Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

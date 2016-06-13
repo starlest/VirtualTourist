@@ -48,7 +48,7 @@ extension TravelLocationsMapViewController {
     
     private func setUpMapViewGestureRecognizer() {
         let uilgr = UILongPressGestureRecognizer(target: self, action: #selector(TravelLocationsMapViewController.addAnnotation(_:)))
-        uilgr.minimumPressDuration = 2.0
+        uilgr.minimumPressDuration = 1.0
         mapView.addGestureRecognizer(uilgr)
     }
     

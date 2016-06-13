@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a8adf46-be75-4b0a-87dc-fef1a1dc81ec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VirtualTourist/Model.xcdatamodeld/Model.xcdatamodel/contents" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist.xcodeproj/project.xcworkspace/xcuserdata/edwinchia.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/VirtualTourist.xcodeproj/project.xcworkspace/xcuserdata/edwinchia.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/VirtualTourist.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist/AppDelegate.swift" afterPath="$PROJECT_DIR$/VirtualTourist/AppDelegate.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/VirtualTourist.iml" afterPath="$PROJECT_DIR$/.idea/VirtualTourist.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pin+CoreDataProperties.swift" afterPath="$PROJECT_DIR$/Pin+CoreDataProperties.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist/CoreDataViewController.swift" afterPath="$PROJECT_DIR$/VirtualTourist/CoreDataViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist/Model.xcdatamodeld/Model.xcdatamodel/contents" afterPath="$PROJECT_DIR$/VirtualTourist/Model.xcdatamodeld/Model.xcdatamodel/contents" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist/Photo+CoreDataProperties.swift" afterPath="$PROJECT_DIR$/VirtualTourist/Photo+CoreDataProperties.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist/Photo.swift" afterPath="$PROJECT_DIR$/VirtualTourist/Photo.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VirtualTourist/TravelLocationsMapViewController+Helpers.swift" afterPath="$PROJECT_DIR$/VirtualTourist/TravelLocationsMapViewController+Helpers.swift" />
     </list>
     <ignored path="VirtualTourist.iws" />
     <ignored path=".idea/workspace.xml" />
