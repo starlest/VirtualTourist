@@ -15,6 +15,8 @@
 		6D1195651D0E431E00202307 /* VirtualTouristTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195641D0E431E00202307 /* VirtualTouristTests.swift */; };
 		6D1195701D0E431E00202307 /* VirtualTouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11956F1D0E431E00202307 /* VirtualTouristUITests.swift */; };
 		6D1195801D0E591400202307 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11957F1D0E591400202307 /* CoreDataStack.swift */; };
+		6D1195821D0E5FF000202307 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195811D0E5FF000202307 /* Client.swift */; };
+		6D1195841D0E600400202307 /* Client+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195831D0E600400202307 /* Client+Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		6D11956F1D0E431E00202307 /* VirtualTouristUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTouristUITests.swift; sourceTree = "<group>"; };
 		6D1195711D0E431E00202307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D11957F1D0E591400202307 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		6D1195811D0E5FF000202307 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		6D1195831D0E600400202307 /* Client+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+Constants.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,9 +143,19 @@
 		6D11957E1D0E53B300202307 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6D1195851D0E60F000202307 /* Client */,
 				6D11957F1D0E591400202307 /* CoreDataStack.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		6D1195851D0E60F000202307 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				6D1195811D0E5FF000202307 /* Client.swift */,
+				6D1195831D0E600400202307 /* Client+Constants.swift */,
+			);
+			name = Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +291,8 @@
 			files = (
 				6D1195801D0E591400202307 /* CoreDataStack.swift in Sources */,
 				6D1195521D0E431E00202307 /* TravelLocationsMapViewController.swift in Sources */,
+				6D1195841D0E600400202307 /* Client+Constants.swift in Sources */,
+				6D1195821D0E5FF000202307 /* Client.swift in Sources */,
 				6D1195501D0E431E00202307 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
