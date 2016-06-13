@@ -23,6 +23,14 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         setUpMapView()
     }
     
+    // MARK: Protocols
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("PhotoAlbumViewController") as! PhotoAlbumViewController
+        controller.annotation = view.annotation
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     // MARK: Actions
     
     @IBAction func editButtonPressed(sender: AnyObject) {

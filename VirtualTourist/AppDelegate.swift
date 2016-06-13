@@ -38,11 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         checkIfFirstLaunch()
+        stack.autoSave(60)
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        saveMapViewState()
         stack.save()
     }
 
@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        print("called")
     }
 }
 

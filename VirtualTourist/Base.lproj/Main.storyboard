@@ -62,5 +62,23 @@
             </objects>
             <point key="canvasLocation" x="-288" y="463"/>
         </scene>
+        <!--Photo Album View Controller-->
+        <scene sceneID="HyG-Cl-3lc">
+            <objects>
+                <viewController storyboardIdentifier="PhotoAlbumViewController" id="2iC-se-G6x" customClass="PhotoAlbumViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g3q-CF-jEo"/>
+                        <viewControllerLayoutGuide type="bottom" id="FmY-kd-6uv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kiR-et-fcA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ME9-Yv-bXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="342" y="463"/>
+        </scene>
     </scenes>
 </document>

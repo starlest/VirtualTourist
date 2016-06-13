@@ -17,6 +17,8 @@
 		6D1195801D0E591400202307 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11957F1D0E591400202307 /* CoreDataStack.swift */; };
 		6D1195821D0E5FF000202307 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195811D0E5FF000202307 /* Client.swift */; };
 		6D1195841D0E600400202307 /* Client+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195831D0E600400202307 /* Client+Constants.swift */; };
+		6D1195881D0E9B2000202307 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195861D0E9B2000202307 /* Model.xcdatamodeld */; };
+		6D11958A1D0E9FEF00202307 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195891D0E9FEF00202307 /* PhotoAlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		6D11957F1D0E591400202307 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		6D1195811D0E5FF000202307 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		6D1195831D0E600400202307 /* Client+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+Constants.swift"; sourceTree = "<group>"; };
+		6D1195871D0E9B2000202307 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		6D1195891D0E9FEF00202307 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				6D1195511D0E431E00202307 /* TravelLocationsMapViewController.swift */,
+				6D1195891D0E9FEF00202307 /* PhotoAlbumViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			children = (
 				6D1195851D0E60F000202307 /* Client */,
 				6D11957F1D0E591400202307 /* CoreDataStack.swift */,
+				6D1195861D0E9B2000202307 /* Model.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -290,10 +296,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D1195801D0E591400202307 /* CoreDataStack.swift in Sources */,
+				6D11958A1D0E9FEF00202307 /* PhotoAlbumViewController.swift in Sources */,
 				6D1195521D0E431E00202307 /* TravelLocationsMapViewController.swift in Sources */,
 				6D1195841D0E600400202307 /* Client+Constants.swift in Sources */,
 				6D1195821D0E5FF000202307 /* Client.swift in Sources */,
 				6D1195501D0E431E00202307 /* AppDelegate.swift in Sources */,
+				6D1195881D0E9B2000202307 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +549,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6D1195861D0E9B2000202307 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6D1195871D0E9B2000202307 /* Model.xcdatamodel */,
+			);
+			currentVersion = 6D1195871D0E9B2000202307 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6D1195441D0E431E00202307 /* Project object */;
 }
