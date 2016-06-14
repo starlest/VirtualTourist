@@ -30,31 +30,8 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
         super.viewDidLoad()
         statusLabel.hidden = true
         setUpMapView()
-        adjustFlowLayout(self.view.frame.size)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        Client.sharedInstance().downloadLocationImages(annotation.coordinate.latitude, longitude: annotation.coordinate.longitude) { (photosArray, error) in
-            if let photosArray = photosArray {
-                
-                self.photosArray = photosArray
-                
-                performUIUpdatesOnMain({
-                    // Set placeholders for downloading images
-                    self.collectionView.reloadData()
-                })
-                
-            } else {
-                performUIUpdatesOnMain({ 
-                    self.statusLabel.hidden = false
-                    if error?.code == Client.ErrorCodes.NoImages {
-                        self.statusLabel.text = "This pin has no images."
-                    } else {
-                        self.statusLabel.text = "Failed to process request. Please try again later. \n \(error?.code)"
-                    }
-                })
-            }
-        }
+        setUpCollectionView()
+        attemptToDownloadImages()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,7 +59,6 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
         return cell
     }
     
-
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
     }
@@ -90,20 +66,5 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     
     // MARK: Actions
     
-    func addActivityIndicatorToCell(cell: UICollectionViewCell) {
-        let activityIndicator = UIActivityIndicatorView(frame: cell.bounds)
-        activityIndicator.startAnimating()
-        activityIndicator.color = UIColor.blueColor()
-        cell.contentView.addSubview(activityIndicator)
-    }
     
-    func adjustFlowLayout(size: CGSize) {
-        let frameWidth = size.width
-        let frameHeight = size.height
-        let space: CGFloat = 1.50
-        let dimension = frameHeight >= frameWidth ? (frameWidth - (2 * space)) / 3.0 : (frameWidth - (5 * space)) / 6.0
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSizeMake(dimension, dimension)
-    }
 }
