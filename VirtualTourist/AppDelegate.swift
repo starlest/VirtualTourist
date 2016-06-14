@@ -17,22 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let stack = CoreDataStack(modelName: "Model")!
     
     func checkIfFirstLaunch() {
-        if !NSUserDefaults.standardUserDefaults().boolForKey(Client.UserDefaultsKeys.HasLaunchedBefore) {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Client.UserDefaultsKeys.HasLaunchedBefore)
-            NSUserDefaults.standardUserDefaults().setDouble(0.0, forKey: Client.UserDefaultsKeys.MapViewCenterLatitude)
-            NSUserDefaults.standardUserDefaults().setDouble(0.0, forKey: Client.UserDefaultsKeys.MapViewCenterLongitude)
-            NSUserDefaults.standardUserDefaults().setDouble(126.0, forKey: Client.UserDefaultsKeys.MapViewSpanLatitudeDelta)
-            NSUserDefaults.standardUserDefaults().setDouble(180.0, forKey: Client.UserDefaultsKeys.MapViewSpanLongitudeDelta)
+        if !NSUserDefaults.standardUserDefaults().boolForKey(Globals.UserDefaultsKeys.HasLaunchedBefore) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Globals.UserDefaultsKeys.HasLaunchedBefore)
+            NSUserDefaults.standardUserDefaults().setDouble(0.0, forKey: Globals.UserDefaultsKeys.MapViewCenterLatitude)
+            NSUserDefaults.standardUserDefaults().setDouble(0.0, forKey: Globals.UserDefaultsKeys.MapViewCenterLongitude)
+            NSUserDefaults.standardUserDefaults().setDouble(126.0, forKey: Globals.UserDefaultsKeys.MapViewSpanLatitudeDelta)
+            NSUserDefaults.standardUserDefaults().setDouble(180.0, forKey: Globals.UserDefaultsKeys.MapViewSpanLongitudeDelta)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
     func saveMapViewState() {
         if let mapView = mapView {
-            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.center.latitude, forKey: Client.UserDefaultsKeys.MapViewCenterLatitude)
-            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.center.longitude, forKey: Client.UserDefaultsKeys.MapViewCenterLongitude)
-            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.span.latitudeDelta, forKey: Client.UserDefaultsKeys.MapViewSpanLatitudeDelta)
-            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.span.longitudeDelta, forKey: Client.UserDefaultsKeys.MapViewSpanLongitudeDelta)
+            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.center.latitude, forKey: Globals.UserDefaultsKeys.MapViewCenterLatitude)
+            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.center.longitude, forKey: Globals.UserDefaultsKeys.MapViewCenterLongitude)
+            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.span.latitudeDelta, forKey: Globals.UserDefaultsKeys.MapViewSpanLatitudeDelta)
+            NSUserDefaults.standardUserDefaults().setDouble(mapView.region.span.longitudeDelta, forKey: Globals.UserDefaultsKeys.MapViewSpanLongitudeDelta)
         }
     }
 

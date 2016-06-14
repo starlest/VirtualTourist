@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-288" y="463"/>
+            <point key="canvasLocation" x="-342" y="463"/>
         </scene>
         <!--Photo Album View Controller-->
         <scene sceneID="HyG-Cl-3lc">
@@ -73,12 +73,63 @@
                     <view key="view" contentMode="scaleToFill" id="kiR-et-fcA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8i8-I8-rtL">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lhN-YK-quj"/>
+                                    <barButtonItem title="New Collection" id="jhW-bs-oKN"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="2R3-eP-oDP"/>
+                                </items>
+                            </toolbar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="laT-qR-DQ3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b7V-Mk-8Me">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
+                                    </mapView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zVY-p0-bGI">
+                                        <rect key="frame" x="0.0" y="278" width="600" height="278"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fkz-uK-nd8">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iVN-uj-4rf">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8i8-I8-rtL" firstAttribute="leading" secondItem="kiR-et-fcA" secondAttribute="leadingMargin" constant="-20" id="054-Qy-cyZ"/>
+                            <constraint firstItem="laT-qR-DQ3" firstAttribute="top" secondItem="kiR-et-fcA" secondAttribute="topMargin" id="2NN-k8-76B"/>
+                            <constraint firstItem="8i8-I8-rtL" firstAttribute="top" secondItem="laT-qR-DQ3" secondAttribute="bottom" id="BUN-Wd-oBC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8i8-I8-rtL" secondAttribute="trailing" constant="-20" id="Jqv-eE-Hwa"/>
+                            <constraint firstItem="laT-qR-DQ3" firstAttribute="leading" secondItem="kiR-et-fcA" secondAttribute="leadingMargin" constant="-20" id="eyF-Vs-RN9"/>
+                            <constraint firstItem="FmY-kd-6uv" firstAttribute="top" secondItem="8i8-I8-rtL" secondAttribute="bottom" id="qIy-zb-Gat"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="laT-qR-DQ3" secondAttribute="trailing" constant="-20" id="wyV-c5-Dq3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="b7V-Mk-8Me" id="Neo-g1-O4S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ME9-Yv-bXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="342" y="463"/>
+            <point key="canvasLocation" x="335" y="463"/>
         </scene>
     </scenes>
 </document>

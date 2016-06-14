@@ -64,10 +64,10 @@ extension TravelLocationsMapViewController {
     }
     
     private func setMapViewRegion() {
-        let latitude = NSUserDefaults.standardUserDefaults().valueForKey(Client.UserDefaultsKeys.MapViewCenterLatitude) as! Double
-        let longitude = NSUserDefaults.standardUserDefaults().valueForKey(Client.UserDefaultsKeys.MapViewCenterLongitude) as! Double
-        let latitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Client.UserDefaultsKeys.MapViewSpanLatitudeDelta) as! Double
-        let longitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Client.UserDefaultsKeys.MapViewSpanLongitudeDelta) as! Double
+        let latitude = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewCenterLatitude) as! Double
+        let longitude = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewCenterLongitude) as! Double
+        let latitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewSpanLatitudeDelta) as! Double
+        let longitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewSpanLongitudeDelta) as! Double
         
         var region = MKCoordinateRegion()
         

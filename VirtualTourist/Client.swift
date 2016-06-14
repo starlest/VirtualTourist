@@ -6,7 +6,7 @@
 //  Copyright © 2016 Edwin Chia. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Client {
     
@@ -53,7 +53,7 @@ class Client {
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
-                sendError("No data was returned by the request!")
+                sendError("No data was returned by the request!", errorCode: Client.ErrorCodes.NoDataReturned)
                 return
             }
             
@@ -71,7 +71,13 @@ class Client {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+            completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: Client.ErrorCodes.FailedToParseData, userInfo: userInfo))
+        }
+        
+        guard let status = parsedResult[Client.FlickrResponseKeys.Status] as? String where status == Client.FlickrResponseValues.OKStatus else {
+            let userInfo = [NSLocalizedDescriptionKey : "Flickr API returned an error."]
             completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+            return
         }
         
         completionHandlerForConvertData(result: parsedResult, error: nil)

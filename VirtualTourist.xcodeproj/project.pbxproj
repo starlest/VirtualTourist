@@ -26,6 +26,10 @@
 		6D1195981D0EA85C00202307 /* CoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195971D0EA85C00202307 /* CoreDataViewController.swift */; };
 		6D11959E1D0EAB5900202307 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11959A1D0EAB5900202307 /* Pin+CoreDataProperties.swift */; };
 		6D1195A41D0EBBDD00202307 /* CoreDataStack+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195A31D0EBBDD00202307 /* CoreDataStack+Utilities.swift */; };
+		6D1195A61D0EF3F200202307 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195A51D0EF3F200202307 /* Globals.swift */; };
+		6D1195A81D0EF49D00202307 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195A71D0EF49D00202307 /* GCDBlackBox.swift */; };
+		6D1195AE1D0FD9C600202307 /* Client+GETConvenienceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195AD1D0FD9C600202307 /* Client+GETConvenienceMethods.swift */; };
+		6D1195B01D0FDEEB00202307 /* PhotoAlbumViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1195AF1D0FDEEB00202307 /* PhotoAlbumViewController+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,10 @@
 		6D1195991D0EAB3700202307 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		6D11959A1D0EAB5900202307 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6D1195A31D0EBBDD00202307 /* CoreDataStack+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+Utilities.swift"; sourceTree = "<group>"; };
+		6D1195A51D0EF3F200202307 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		6D1195A71D0EF49D00202307 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		6D1195AD1D0FD9C600202307 /* Client+GETConvenienceMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+GETConvenienceMethods.swift"; sourceTree = "<group>"; };
+		6D1195AF1D0FDEEB00202307 /* PhotoAlbumViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbumViewController+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,12 +131,11 @@
 			isa = PBXGroup;
 			children = (
 				6D11954F1D0E431E00202307 /* AppDelegate.swift */,
+				6D1195A71D0EF49D00202307 /* GCDBlackBox.swift */,
+				6D1195A51D0EF3F200202307 /* Globals.swift */,
 				6D11957E1D0E53B300202307 /* Models */,
 				6D11957D1D0E539B00202307 /* Controllers */,
-				6D1195531D0E431E00202307 /* Main.storyboard */,
-				6D1195561D0E431E00202307 /* Assets.xcassets */,
-				6D1195581D0E431E00202307 /* LaunchScreen.storyboard */,
-				6D11955B1D0E431E00202307 /* Info.plist */,
+				6D1195A91D0EF78800202307 /* Supporting Files */,
 			);
 			path = VirtualTourist;
 			sourceTree = "<group>";
@@ -156,7 +163,7 @@
 			children = (
 				6D1195971D0EA85C00202307 /* CoreDataViewController.swift */,
 				6D1195941D0EA75900202307 /* TravelLocationsMapViewController */,
-				6D1195891D0E9FEF00202307 /* PhotoAlbumViewController.swift */,
+				6D1195AC1D0EF80F00202307 /* PhotoAlbumViewController */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 			children = (
 				6D1195811D0E5FF000202307 /* Client.swift */,
 				6D1195831D0E600400202307 /* Client+Constants.swift */,
+				6D1195AD1D0FD9C600202307 /* Client+GETConvenienceMethods.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -182,11 +190,9 @@
 		6D1195931D0EA6F200202307 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				6D1195AB1D0EF7CB00202307 /* Pin */,
+				6D1195AA1D0EF7C100202307 /* Photo */,
 				6D1195A21D0EBBC900202307 /* CoreDataStack */,
-				6D11958B1D0EA6ED00202307 /* Photo+CoreDataProperties.swift */,
-				6D11959A1D0EAB5900202307 /* Pin+CoreDataProperties.swift */,
-				6D11958C1D0EA6ED00202307 /* Photo.swift */,
-				6D11958E1D0EA6ED00202307 /* Pin.swift */,
 				6D1195861D0E9B2000202307 /* Model.xcdatamodeld */,
 			);
 			name = CoreData;
@@ -208,6 +214,44 @@
 				6D1195A31D0EBBDD00202307 /* CoreDataStack+Utilities.swift */,
 			);
 			name = CoreDataStack;
+			sourceTree = "<group>";
+		};
+		6D1195A91D0EF78800202307 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D1195531D0E431E00202307 /* Main.storyboard */,
+				6D1195561D0E431E00202307 /* Assets.xcassets */,
+				6D1195581D0E431E00202307 /* LaunchScreen.storyboard */,
+				6D11955B1D0E431E00202307 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6D1195AA1D0EF7C100202307 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				6D11958C1D0EA6ED00202307 /* Photo.swift */,
+				6D11958B1D0EA6ED00202307 /* Photo+CoreDataProperties.swift */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
+		6D1195AB1D0EF7CB00202307 /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				6D11958E1D0EA6ED00202307 /* Pin.swift */,
+				6D11959A1D0EAB5900202307 /* Pin+CoreDataProperties.swift */,
+			);
+			name = Pin;
+			sourceTree = "<group>";
+		};
+		6D1195AC1D0EF80F00202307 /* PhotoAlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6D1195891D0E9FEF00202307 /* PhotoAlbumViewController.swift */,
+				6D1195AF1D0FDEEB00202307 /* PhotoAlbumViewController+Helpers.swift */,
+			);
+			name = PhotoAlbumViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,14 +385,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D1195A81D0EF49D00202307 /* GCDBlackBox.swift in Sources */,
 				6D1195801D0E591400202307 /* CoreDataStack.swift in Sources */,
 				6D1195981D0EA85C00202307 /* CoreDataViewController.swift in Sources */,
 				6D1195921D0EA6ED00202307 /* Pin.swift in Sources */,
 				6D11959E1D0EAB5900202307 /* Pin+CoreDataProperties.swift in Sources */,
 				6D11958A1D0E9FEF00202307 /* PhotoAlbumViewController.swift in Sources */,
 				6D1195521D0E431E00202307 /* TravelLocationsMapViewController.swift in Sources */,
+				6D1195B01D0FDEEB00202307 /* PhotoAlbumViewController+Helpers.swift in Sources */,
 				6D1195901D0EA6ED00202307 /* Photo.swift in Sources */,
 				6D1195961D0EA78700202307 /* TravelLocationsMapViewController+Helpers.swift in Sources */,
+				6D1195AE1D0FD9C600202307 /* Client+GETConvenienceMethods.swift in Sources */,
+				6D1195A61D0EF3F200202307 /* Globals.swift in Sources */,
 				6D1195841D0E600400202307 /* Client+Constants.swift in Sources */,
 				6D1195821D0E5FF000202307 /* Client.swift in Sources */,
 				6D1195501D0E431E00202307 /* AppDelegate.swift in Sources */,
