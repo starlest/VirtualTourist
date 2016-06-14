@@ -23,7 +23,7 @@ class Client {
     }
     
     // MARK: GET
-    func taskForGetMethod(request request: NSMutableURLRequest, completionHandlerForGet: (results: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGetMethod(request request: NSURLRequest, completionHandlerForGet: (results: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
@@ -62,24 +62,5 @@ class Client {
         }
         
         return task
-    }
-    
-    func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
-        
-        var parsedResult: AnyObject!
-        do {
-            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-        } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: Client.ErrorCodes.FailedToParseData, userInfo: userInfo))
-        }
-        
-        guard let status = parsedResult[Client.FlickrResponseKeys.Status] as? String where status == Client.FlickrResponseValues.OKStatus else {
-            let userInfo = [NSLocalizedDescriptionKey : "Flickr API returned an error."]
-            completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
-            return
-        }
-        
-        completionHandlerForConvertData(result: parsedResult, error: nil)
     }
 }

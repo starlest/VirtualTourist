@@ -25,6 +25,6 @@ extension PhotoAlbumViewController {
     }
     
     private func zoomMapViewSpan() -> MKCoordinateSpan {
-        return MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta / zoomLevel, longitudeDelta: mapView.region.span.longitudeDelta / zoomLevel)
+        return MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta / mapViewZoomLevel, longitudeDelta: mapView.region.span.longitudeDelta / mapViewZoomLevel)
     }
 }
