@@ -31,10 +31,7 @@ extension Client {
     }
     
     func downloadImageFromPhotoDictionaryToCell(photoDictionary: [String:AnyObject], cell: UICollectionViewCell) {
-        
-        addActivityIndicatorToCell(cell)
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+        performOperationsInBackground({
             if let imageUrlString = photoDictionary[Client.FlickrResponseKeys.MediumURL] as? String {
                 let image = self.downloadImageFromURL(imageUrlString)
                 if let image = image {
@@ -44,14 +41,7 @@ extension Client {
                     })
                 }
             }
-        }
-    }
-    
-    private func addActivityIndicatorToCell(cell: UICollectionViewCell) {
-        let activityIndicator = UIActivityIndicatorView(frame: cell.bounds)
-        activityIndicator.startAnimating()
-        activityIndicator.color = UIColor.blueColor()
-        cell.contentView.addSubview(activityIndicator)
+        })
     }
     
     private func downloadImageFromURL(urlString: String) -> UIImage? {

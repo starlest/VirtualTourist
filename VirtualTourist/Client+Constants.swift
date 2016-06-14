@@ -64,6 +64,7 @@ extension Client {
     struct ErrorCodes {
         static let FailedToParseData = 1001
         static let NoDataReturned = 1002
+        static let NoImages = 1003
         static let FailedConnectionToServer = 5
         static let InvalidLoginCredentials = 403
         static let FailedToRetrieveUserData = 2

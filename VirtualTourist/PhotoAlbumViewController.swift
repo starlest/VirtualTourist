@@ -16,6 +16,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var statusLabel: UILabel!
     
     var annotation: MKAnnotation!
     
@@ -27,7 +28,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        statusLabel.hidden = true
         setUpMapView()
         adjustFlowLayout(self.view.frame.size)
         collectionView.delegate = self
@@ -39,11 +40,19 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.photosArray = photosArray
                 
                 performUIUpdatesOnMain({
+                    // Set placeholders for downloading images
                     self.collectionView.reloadData()
                 })
                 
             } else {
-                print(error)
+                performUIUpdatesOnMain({ 
+                    self.statusLabel.hidden = false
+                    if error?.code == Client.ErrorCodes.NoImages {
+                        self.statusLabel.text = "This pin has no images."
+                    } else {
+                        self.statusLabel.text = "Failed to process request. Please try again later. \n \(error?.code)"
+                    }
+                })
             }
         }
     }
@@ -68,6 +77,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as UICollectionViewCell
+        addActivityIndicatorToCell(cell)
         Client.sharedInstance().downloadImageFromPhotoDictionaryToCell(photosArray[indexPath.row], cell: cell)
         return cell
     }
@@ -79,6 +89,13 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     // MARK: Actions
+    
+    func addActivityIndicatorToCell(cell: UICollectionViewCell) {
+        let activityIndicator = UIActivityIndicatorView(frame: cell.bounds)
+        activityIndicator.startAnimating()
+        activityIndicator.color = UIColor.blueColor()
+        cell.contentView.addSubview(activityIndicator)
+    }
     
     func adjustFlowLayout(size: CGSize) {
         let frameWidth = size.width

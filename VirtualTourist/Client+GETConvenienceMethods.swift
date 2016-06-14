@@ -45,7 +45,7 @@ extension Client {
             }
             
             if photosArray.count == 0 {
-                sendError("No photos found. Please search again.")
+                sendError("No photos found. Please search again.", errorCode: Client.ErrorCodes.NoImages)
                 return
             }
             
