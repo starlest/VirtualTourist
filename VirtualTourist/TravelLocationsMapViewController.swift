@@ -16,6 +16,8 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
 
+    var editMode: Bool = false
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -28,14 +30,24 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
     // MARK: Protocols
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        let controller = storyboard?.instantiateViewControllerWithIdentifier("PhotoAlbumViewController") as! PhotoAlbumViewController
-        controller.annotation = view.annotation
-        navigationController?.pushViewController(controller, animated: true)
+        if editMode {
+            
+        } else {
+            let controller = storyboard?.instantiateViewControllerWithIdentifier("PhotoAlbumViewController") as! PhotoAlbumViewController
+            controller.annotation = view.annotation
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     // MARK: Actions
     
     @IBAction func editButtonPressed(sender: AnyObject) {
+        setEditMode()
+    }
+    
+    func setEditMode() {
+        editMode = !editMode
+        editButton.title = editMode ? "Done" : "Edit"
     }
 }
 

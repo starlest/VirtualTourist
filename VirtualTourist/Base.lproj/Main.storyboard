@@ -47,7 +47,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FtB-Ad-Pbe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Uuz-0E-fod">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Uuz-0E-fod">
                             <connections>
                                 <action selector="editButtonPressed:" destination="BYZ-38-t0r" id="AZV-0Y-oid"/>
                             </connections>
