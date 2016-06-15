@@ -65,13 +65,33 @@ class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate
     
     @IBAction func newCollectionButtonPressed(sender: AnyObject) {
         if selectionDeletionMode {
-            statusLabel.hidden = false
-            statusLabel.text = "This pin has no images."
+            removeSelectedPhotosFromDatabase()
+            resetCollectionViewDisplayedPhotos()
+            newCollectionButton.title = "New Collection"
+            selectionDeletionMode = false
         } else {
             statusLabel.hidden = true
             removePhotosFromUI()
-            removePhotosFromDatabase(pin.photos?.allObjects as! [Photo])
+            removePhotosFromDatabase()
             attemptToDownloadImages()
+        }
+    }
+    
+    private func removeSelectedPhotosFromDatabase() {
+        for indexPath in collectionView.indexPathsForSelectedItems()! {
+            let photo = pinPhotos[indexPath.row]
+            stack.context.deleteObject(photo)
+        }
+        stack.save()
+    }
+    
+    private func resetCollectionViewDisplayedPhotos() {
+        pinPhotos = pin.photos?.allObjects as! [Photo]
+        collectionView.reloadData()
+
+        if pinPhotos.count == 0 {
+            statusLabel.hidden = false
+            statusLabel.text = "This pin has no images."
         }
     }
 }

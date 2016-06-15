@@ -12,10 +12,11 @@ import CoreData
 
 class Photo: NSManagedObject {
     
-    convenience init(photoData: NSData, pin: Pin, context : NSManagedObjectContext){
+    convenience init(photoData: NSData, creationDate: NSDate, pin: Pin, context : NSManagedObjectContext){
         if let ent = NSEntityDescription.entityForName(Globals.Entities.Photo, inManagedObjectContext: context) {
             self.init(entity: ent, insertIntoManagedObjectContext: context)
             self.imageData = photoData
+            self.creationDate = creationDate
             self.pin = pin
         } else {
             fatalError("Unable to find Entity name!")

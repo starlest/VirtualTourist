@@ -56,7 +56,7 @@ extension PhotoAlbumViewController {
             for photoDictionary in self.photosArray {
                 
                 if let image = Client.sharedInstance().downloadImageFromPhotoDictionary(photoDictionary) {
-                    let photo = Photo(photoData: UIImagePNGRepresentation(image)!, pin: self.pin, context: self.stack.context)
+                    let photo = Photo(photoData: UIImagePNGRepresentation(image)!, creationDate: NSDate(timeIntervalSinceNow: 0), pin: self.pin, context: self.stack.context)
                     self.pinPhotos.append(photo)
                 
                     // Only display images on visible cells of the collection view
@@ -84,8 +84,8 @@ extension PhotoAlbumViewController {
         collectionView!.reloadData()
     }
     
-    func removePhotosFromDatabase(photos: [Photo]) {
-        for photo in photos {
+    func removePhotosFromDatabase() {
+        for photo in pinPhotos {
             stack.context.deleteObject(photo)
         }
         stack.save()

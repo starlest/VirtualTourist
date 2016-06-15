@@ -20,9 +20,11 @@ extension PhotoAlbumViewController {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Globals.CellIdentifier, forIndexPath: indexPath) as! PhotoAlbumCollectionViewCell
         cell.imageView.image = nil
+        cell.imageView.alpha = cell.selected ? 0.5 : 1.0
         
         if let photo = pinPhotos[safe: indexPath.row] {
             setCellImageWithPhoto(cell, photo: photo)
+            cell.activityIndicatorView.stopAnimating()
         } else {
             cell.activityIndicatorView.startAnimating()
         }
