@@ -38,7 +38,7 @@ extension PhotoAlbumViewController {
         collectionView.dataSource = self
     }
     
-    private func adjustFlowLayout(size: CGSize) {
+    func adjustFlowLayout(size: CGSize) {
         let frameWidth = size.width
         let frameHeight = size.height
         let space: CGFloat = 1.50
@@ -51,7 +51,7 @@ extension PhotoAlbumViewController {
     // MARK: Utilities
     
     func attemptToDownloadImages() {
-        Client.sharedInstance().downloadLocationImages(annotation.coordinate.latitude, longitude: annotation.coordinate.longitude) { (photosArray, error) in
+        Client.sharedInstance().downloadLocationPhotosArray(annotation.coordinate.latitude, longitude: annotation.coordinate.longitude) { (photosArray, error) in
             
             if let photosArray = photosArray {
                 self.photosArray = photosArray
@@ -67,6 +67,7 @@ extension PhotoAlbumViewController {
             }
         }
     }
+    
     
     func addActivityIndicatorToCell(cell: UICollectionViewCell) {
         let activityIndicator = UIActivityIndicatorView(frame: cell.bounds)

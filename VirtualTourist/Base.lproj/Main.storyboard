@@ -78,7 +78,11 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="lhN-YK-quj"/>
-                                    <barButtonItem title="New Collection" id="jhW-bs-oKN"/>
+                                    <barButtonItem title="New Collection" id="jhW-bs-oKN">
+                                        <connections>
+                                            <action selector="newCollectionButtonPressed:" destination="2iC-se-G6x" id="iCA-Ft-VMr"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2R3-eP-oDP"/>
                                 </items>
                             </toolbar>
@@ -134,6 +138,7 @@
                         <outlet property="collectionView" destination="zVY-p0-bGI" id="vQI-x0-HMm"/>
                         <outlet property="flowLayout" destination="fkz-uK-nd8" id="VgK-B4-6cD"/>
                         <outlet property="mapView" destination="b7V-Mk-8Me" id="Neo-g1-O4S"/>
+                        <outlet property="newCollectionButton" destination="jhW-bs-oKN" id="ayF-ge-YGq"/>
                         <outlet property="statusLabel" destination="Nri-xS-OkX" id="0qu-fV-Xoc"/>
                     </connections>
                 </viewController>

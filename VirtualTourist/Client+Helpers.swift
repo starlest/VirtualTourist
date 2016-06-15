@@ -11,6 +11,22 @@ import UIKit
 
 extension Client {
     
+    func flickrURLFromParameters(parameters: [String:AnyObject]) -> NSURL {
+        
+        let components = NSURLComponents()
+        components.scheme = Client.Flickr.APIScheme
+        components.host = Client.Flickr.APIHost
+        components.path = Client.Flickr.APIPath
+        components.queryItems = [NSURLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        return components.URL!
+    }
+    
     func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
         
         var parsedResult: AnyObject!

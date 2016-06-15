@@ -17,6 +17,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var newCollectionButton: UIBarButtonItem!
     
     var annotation: MKAnnotation!
     
@@ -40,6 +41,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        // Readjust Collection View Layout when the device's orientation is changed
         if flowLayout != nil {
             adjustFlowLayout(size)
             flowLayout.invalidateLayout()
@@ -62,9 +64,11 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
     }
-    
-    
+
     // MARK: Actions
-    
-    
+    @IBAction func newCollectionButtonPressed(sender: AnyObject) {
+        photosArray.removeAll()
+        collectionView!.reloadData()
+        attemptToDownloadImages()
+    }
 }
