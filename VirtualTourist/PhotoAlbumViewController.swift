@@ -37,14 +37,7 @@ class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate
         setPinAssociatedWithAnnotation()
         setUpMapView()
         setUpCollectionView()
-        if pin.photos?.count == 0 {
-            print("empty pin photos")
-            attemptToDownloadImages()
-        } else {
-            print("non empty pin photos")
-            pinPhotos = pin.photos?.allObjects as! [Photo]
-            collectionView.reloadData()
-        }
+        displayPhotos()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,38 +57,9 @@ class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate
             flowLayout.invalidateLayout()
         }
     }
-    
-    // MARK: Protocols
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosArray.count == 0 ? pinPhotos.count : photosArray.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Globals.CellIdentifier, forIndexPath: indexPath) as! PhotoAlbumCollectionViewCell
-        cell.imageView.image = nil
-        
-        if let photo = pinPhotos[safe: indexPath.row] {
-            setCellImageWithPhoto(cell, photo: photo)
-        } else {
-            cell.activityIndicatorView.startAnimating()
-        }
-        
-        return cell
-    }
-    
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Globals.CellIdentifier, forIndexPath: indexPath) as! PhotoAlbumCollectionViewCell
-        cell.imageView.alpha = 0.5
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Globals.CellIdentifier, forIndexPath: indexPath) as! PhotoAlbumCollectionViewCell
-        cell.imageView.alpha = 0.5
-    }
 
     // MARK: Actions
+    
     @IBAction func newCollectionButtonPressed(sender: AnyObject) {
         statusLabel.hidden = true
         pinPhotos.removeAll()
