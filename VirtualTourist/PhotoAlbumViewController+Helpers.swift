@@ -7,6 +7,7 @@
 //
 
 import MapKit
+import CoreData
 
 extension PhotoAlbumViewController {
     
@@ -75,5 +76,18 @@ extension PhotoAlbumViewController {
         let image = UIImage(data: photo.imageData!)
         cell.imageView.image = image
         cell.activityIndicatorView.stopAnimating()
+    }
+    
+    func removePhotosFromUI() {
+        pinPhotos.removeAll()
+        photosArray.removeAll()
+        collectionView!.reloadData()
+    }
+    
+    func removePhotosFromDatabase() {
+        for photo in pin.photos! {
+            stack.context.deleteObject(photo as! NSManagedObject)
+        }
+        stack.save()
     }
 }

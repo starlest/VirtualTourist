@@ -37,6 +37,7 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
             let pin = getPinAssociatedWithAnnotation(annotation)
             stack.context.deleteObject(pin)
         } else {
+            mapView.deselectAnnotation(view.annotation, animated: false)
             let controller = storyboard?.instantiateViewControllerWithIdentifier("PhotoAlbumViewController") as! PhotoAlbumViewController
             controller.annotation = view.annotation
             navigationController?.pushViewController(controller, animated: true)

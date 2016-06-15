@@ -62,9 +62,8 @@ class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate
     
     @IBAction func newCollectionButtonPressed(sender: AnyObject) {
         statusLabel.hidden = true
-        pinPhotos.removeAll()
-        photosArray.removeAll()
-        collectionView!.reloadData()
+        removePhotosFromUI()
+        removePhotosFromDatabase()
         attemptToDownloadImages()
     }
 }
