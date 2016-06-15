@@ -21,10 +21,13 @@ class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate
     @IBOutlet weak var newCollectionButton: UIBarButtonItem!
     
     var annotation: MKAnnotation!
+    
     var pin: Pin!
     var pinPhotos = [Photo]()
     
     var photosArray: [[String:AnyObject]] = [[String:AnyObject]]()
+    
+    var selectionDeletionMode: Bool = false
     
     let mapViewZoomLevel: Double = 2000.0
     
@@ -61,9 +64,14 @@ class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate
     // MARK: Actions
     
     @IBAction func newCollectionButtonPressed(sender: AnyObject) {
-        statusLabel.hidden = true
-        removePhotosFromUI()
-        removePhotosFromDatabase()
-        attemptToDownloadImages()
+        if selectionDeletionMode {
+            statusLabel.hidden = false
+            statusLabel.text = "This pin has no images."
+        } else {
+            statusLabel.hidden = true
+            removePhotosFromUI()
+            removePhotosFromDatabase(pin.photos?.allObjects as! [Photo])
+            attemptToDownloadImages()
+        }
     }
 }

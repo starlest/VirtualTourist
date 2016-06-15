@@ -84,9 +84,9 @@ extension PhotoAlbumViewController {
         collectionView!.reloadData()
     }
     
-    func removePhotosFromDatabase() {
-        for photo in pin.photos! {
-            stack.context.deleteObject(photo as! NSManagedObject)
+    func removePhotosFromDatabase(photos: [Photo]) {
+        for photo in photos {
+            stack.context.deleteObject(photo)
         }
         stack.save()
     }

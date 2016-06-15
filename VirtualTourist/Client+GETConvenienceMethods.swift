@@ -51,7 +51,6 @@ extension Client {
                     return
                 }
                 
-                print(photosArray!.count)
                 completionHandler(photosArray: photosArray, error: nil)
             })
         }

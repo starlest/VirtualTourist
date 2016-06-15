@@ -31,9 +31,21 @@ extension PhotoAlbumViewController {
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Globals.CellIdentifier, forIndexPath: indexPath) as! PhotoAlbumCollectionViewCell
-        cell.imageView.tintColor.
-        print("selected")
+        if collectionView.indexPathsForSelectedItems()?.count == 1 {
+            newCollectionButton.title = "Remove Selected Pictures"
+            selectionDeletionMode = true
+        }
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoAlbumCollectionViewCell
+        cell.imageView.alpha = 0.5
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        if collectionView.indexPathsForSelectedItems()?.count == 0 {
+            newCollectionButton.title = "New Collection"
+            selectionDeletionMode = false
+        }
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoAlbumCollectionViewCell
+        cell.imageView.alpha = 1.0
     }
     
     // MARK: Collection View Helper Methods
@@ -42,6 +54,7 @@ extension PhotoAlbumViewController {
         adjustFlowLayout(self.view.frame.size)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.allowsMultipleSelection = true
     }
     
     func adjustFlowLayout(size: CGSize) {
