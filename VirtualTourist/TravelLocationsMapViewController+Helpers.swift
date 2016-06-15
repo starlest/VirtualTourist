@@ -11,6 +11,8 @@ import CoreData
 
 extension TravelLocationsMapViewController {
     
+    // MARK: Setup Helper Methods
+    
     func setUpMapView() {
         mapView.delegate = self
         setUpMapViewGestureRecognizer()
@@ -23,20 +25,12 @@ extension TravelLocationsMapViewController {
     }
     
     func loadPins() {
-        // Get the Stack
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let stack = delegate.stack
-        
-        // Create the fetch request
-        let fr = NSFetchRequest(entityName: "Pin")
-        fr.sortDescriptors = [
+        let sortDescriptors = [
             NSSortDescriptor(key: "latitude", ascending: true),
             NSSortDescriptor(key: "longitude", ascending: true)
         ]
         
-        // Create a fetchedResultsController
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
-        
+        performFetchRequest("Pin", sortDescriptors: sortDescriptors)
         let pins = fetchedResultsController?.fetchedObjects as! [Pin]
         
         for pin in pins {
@@ -52,15 +46,47 @@ extension TravelLocationsMapViewController {
         mapView.addGestureRecognizer(uilgr)
     }
     
-    func addAnnotation(gestureRecognizer: UIGestureRecognizer){
+    
+    func addAnnotation(gestureRecognizer: UIGestureRecognizer) {
+        
+        if gestureRecognizer.state != UIGestureRecognizerState.Ended {
+            return
+        }
+        
         let touchPoint = gestureRecognizer.locationInView(mapView)
         let newCoordinates = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
-        let pin = Pin(latitude: newCoordinates.latitude, longitude: newCoordinates.longitude, context: fetchedResultsController!.managedObjectContext)
+        let latitude = roundDouble(newCoordinates.latitude, numberOfPlaces: 10)
+        let longitude = roundDouble(newCoordinates.longitude, numberOfPlaces: 10)
         
+        if doesPinAlreadyExistsInDatabase(latitude, longitude: longitude) {
+            return
+        }
+        
+        let pin = Pin(latitude: latitude, longitude: longitude, context: fetchedResultsController!.managedObjectContext)
+
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: pin.latitude as! Double, longitude: pin.longitude as! Double)
-        
+
         mapView.addAnnotation(annotation)
+        
+        stack.save()
+    }
+    
+    // To ensure the values saved into CoreData have the same precision
+    private func roundDouble(number: Double, numberOfPlaces: Double) -> Double {
+        let multiplier = pow(10.0, numberOfPlaces)
+        let rounded = round(number * multiplier) / multiplier
+        return rounded
+    }
+    
+    private func doesPinAlreadyExistsInDatabase(latitude: Double, longitude: Double) -> Bool {
+        let sortDescriptors = [
+            NSSortDescriptor(key: "latitude", ascending: true),
+            NSSortDescriptor(key: "longitude", ascending: true)
+        ]
+        let predicate = NSPredicate(format: "latitude == \(latitude) AND longitude == \(longitude)")
+        performFetchRequest("Pin", sortDescriptors: sortDescriptors, predicate: predicate)
+        return fetchedResultsController?.fetchedObjects?.count > 0
     }
     
     private func setMapViewRegion() {

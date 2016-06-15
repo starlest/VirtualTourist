@@ -13,7 +13,6 @@ import CoreData
 class Pin: NSManagedObject {
 
     convenience init(latitude: Double, longitude: Double, context : NSManagedObjectContext){
-        
         if let ent = NSEntityDescription.entityForName("Pin", inManagedObjectContext: context) {
             self.init(entity: ent, insertIntoManagedObjectContext: context)
             self.latitude = latitude

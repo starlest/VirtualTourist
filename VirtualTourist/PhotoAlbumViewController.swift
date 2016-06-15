@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import CoreData
 
-class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     // MARK: Properties
     
@@ -20,6 +21,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var newCollectionButton: UIBarButtonItem!
     
     var annotation: MKAnnotation!
+    var pin: Pin!
     
     var photosArray: [[String:AnyObject]] = [[String:AnyObject]]()
     
@@ -29,7 +31,9 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setStack()
         statusLabel.hidden = true
+        setPinAssociatedWithAnnotation()
         setUpMapView()
         setUpCollectionView()
         attemptToDownloadImages()
@@ -67,6 +71,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
 
     // MARK: Actions
     @IBAction func newCollectionButtonPressed(sender: AnyObject) {
+        statusLabel.hidden = true
         photosArray.removeAll()
         collectionView!.reloadData()
         attemptToDownloadImages()

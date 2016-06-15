@@ -50,6 +50,16 @@ extension PhotoAlbumViewController {
     
     // MARK: Utilities
     
+    func setPinAssociatedWithAnnotation() {
+        let sortDescriptors = [
+            NSSortDescriptor(key: "latitude", ascending: true),
+            NSSortDescriptor(key: "longitude", ascending: true)
+        ]
+        let predicate = NSPredicate(format: "latitude == \(annotation.coordinate.latitude) AND longitude == \(annotation.coordinate.longitude)")
+        performFetchRequest("Pin", sortDescriptors: sortDescriptors, predicate: predicate)
+        pin = fetchedResultsController?.fetchedObjects?.first as! Pin
+    }
+    
     func attemptToDownloadImages() {
         Client.sharedInstance().downloadLocationPhotosArray(annotation.coordinate.latitude, longitude: annotation.coordinate.longitude) { (photosArray, error) in
             
@@ -67,7 +77,6 @@ extension PhotoAlbumViewController {
             }
         }
     }
-    
     
     func addActivityIndicatorToCell(cell: UICollectionViewCell) {
         let activityIndicator = UIActivityIndicatorView(frame: cell.bounds)

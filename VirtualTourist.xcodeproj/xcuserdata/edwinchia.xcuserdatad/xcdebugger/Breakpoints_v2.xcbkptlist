@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualTourist/PhotoAlbumViewController.swift"
-            timestampString = "487646429.251631"
+            timestampString = "487650026.30304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "PhotoAlbumViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -64,6 +64,22 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "downloadLocationPhotosArray(_:longitude:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VirtualTourist/TravelLocationsMapViewController+Helpers.swift"
+            timestampString = "487655876.479451"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "doesPinAlreadyExistsInDatabase(_:longitude:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

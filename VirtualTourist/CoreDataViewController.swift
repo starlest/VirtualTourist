@@ -11,6 +11,13 @@ import CoreData
 
 class CoreDataViewController: UIViewController {
 
+    var stack: CoreDataStack!
+
+    func setStack() {
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        stack = delegate.stack
+    }
+    
     // MARK:  - Properties
     var fetchedResultsController : NSFetchedResultsController? {
         didSet {
@@ -25,6 +32,13 @@ class CoreDataViewController: UIViewController {
     // protocol called NSArchiving. It's not relevant.
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func performFetchRequest(entityName: String, sortDescriptors: [NSSortDescriptor]?, predicate: NSPredicate? = nil) {
+        let fr = NSFetchRequest(entityName: entityName)
+        fr.sortDescriptors = sortDescriptors
+        fr.predicate = predicate
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
     func executeSearch() {

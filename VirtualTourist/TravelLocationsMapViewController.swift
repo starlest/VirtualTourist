@@ -15,11 +15,12 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
-    
+
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setStack()
         setUpMapView()
         loadPins()
     }
