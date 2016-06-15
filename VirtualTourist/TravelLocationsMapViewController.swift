@@ -15,6 +15,7 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var deleteLabel: UILabel!
 
     var editMode: Bool = false
     
@@ -31,7 +32,10 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if editMode {
-            
+            let annotation = view.annotation!
+            mapView.removeAnnotation(annotation)
+            let pin = getPinAssociatedWithAnnotation(annotation)
+            stack.context.deleteObject(pin)
         } else {
             let controller = storyboard?.instantiateViewControllerWithIdentifier("PhotoAlbumViewController") as! PhotoAlbumViewController
             controller.annotation = view.annotation
@@ -43,11 +47,6 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
     
     @IBAction func editButtonPressed(sender: AnyObject) {
         setEditMode()
-    }
-    
-    func setEditMode() {
-        editMode = !editMode
-        editButton.title = editMode ? "Done" : "Edit"
     }
 }
 

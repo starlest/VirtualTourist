@@ -23,6 +23,24 @@ extension TravelLocationsMapViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.mapView = mapView
     }
+  
+    private func setMapViewRegion() {
+        let latitude = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewCenterLatitude) as! Double
+        let longitude = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewCenterLongitude) as! Double
+        let latitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewSpanLatitudeDelta) as! Double
+        let longitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewSpanLongitudeDelta) as! Double
+        
+        var region = MKCoordinateRegion()
+        
+        var span = MKCoordinateSpan()
+        span.latitudeDelta = latitudeDelta
+        span.longitudeDelta = longitudeDelta
+        
+        region.span = span
+        region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        mapView.setRegion(region, animated: true)
+    }
     
     func loadPins() {
         let sortDescriptors = [
@@ -40,12 +58,14 @@ extension TravelLocationsMapViewController {
             mapView.addAnnotation(annotation)
         }
     }
-    
+
     private func setUpMapViewGestureRecognizer() {
         let uilgr = UILongPressGestureRecognizer(target: self, action: #selector(TravelLocationsMapViewController.addAnnotation(_:)))
         uilgr.minimumPressDuration = 1.0
         mapView.addGestureRecognizer(uilgr)
     }
+    
+    // MARK: Helpers
     
     func addAnnotation(gestureRecognizer: UIGestureRecognizer) {
         
@@ -85,22 +105,27 @@ extension TravelLocationsMapViewController {
         performFetchRequest(Globals.Entities.Pin, sortDescriptors: sortDescriptors, predicate: predicate)
         return fetchedResultsController?.fetchedObjects?.count > 0
     }
+
+    func getPinAssociatedWithAnnotation(annotation: MKAnnotation) -> Pin {
+        let sortDescriptors = [
+            NSSortDescriptor(key: Globals.PinProperties.Latitude, ascending: true),
+            NSSortDescriptor(key: Globals.PinProperties.Longitude, ascending: true)
+        ]
+        let predicate = NSPredicate(format: "\(Globals.PinProperties.Latitude) == \(annotation.coordinate.latitude) AND \(Globals.PinProperties.Longitude) == \(annotation.coordinate.longitude)")
+        performFetchRequest(Globals.Entities.Pin, sortDescriptors: sortDescriptors, predicate: predicate)
+        let pin = fetchedResultsController?.fetchedObjects?.first as! Pin
+        return pin
+    }
     
-    private func setMapViewRegion() {
-        let latitude = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewCenterLatitude) as! Double
-        let longitude = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewCenterLongitude) as! Double
-        let latitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewSpanLatitudeDelta) as! Double
-        let longitudeDelta = NSUserDefaults.standardUserDefaults().valueForKey(Globals.UserDefaultsKeys.MapViewSpanLongitudeDelta) as! Double
+    func setEditMode() {
+        editMode = !editMode
+        editButton.title = editMode ? "Done" : "Edit"
+        deleteLabel.hidden = !editMode
+        mapView.frame.origin.y = editMode ? -50 : 0
         
-        var region = MKCoordinateRegion()
-        
-        var span = MKCoordinateSpan()
-        span.latitudeDelta = latitudeDelta
-        span.longitudeDelta = longitudeDelta
-        
-        region.span = span
-        region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        mapView.setRegion(region, animated: true)
+        // When edit is done, save the changes
+        if !editMode {
+            stack.save()
+        }
     }
 }

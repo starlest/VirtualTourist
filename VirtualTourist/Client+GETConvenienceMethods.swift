@@ -59,7 +59,8 @@ extension Client {
         task.resume()
     }
     
-    // MARK: downloadLocationPhotosArray Helpers
+    // MARK: Helpers
+    
     private func getImagesFromPageNumber(methodParameters: [String:AnyObject], withPageNumber: Int, completionHandler: (photosArray: [[String:AnyObject]]?, error: NSError?) -> Void) {
         
         var methodParams = methodParameters
@@ -91,8 +92,6 @@ extension Client {
         
         task.resume()
     }
-
-    // MARK: Utilities
     
     private func createSearchByLocationMethodParameters(latitude: Double, longitude: Double) -> [String:String!] {
         return [

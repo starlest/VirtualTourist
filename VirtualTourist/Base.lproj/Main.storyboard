@@ -37,11 +37,24 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QF5-Jh-dJT">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins to Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-7j-R1e">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="m5i-Hb-Y1x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QF5-Jh-dJT" secondAttribute="bottom" id="CPO-i1-M22"/>
                             <constraint firstItem="QF5-Jh-dJT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Vmf-1Z-ZsJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fAH-7j-R1e" secondAttribute="bottom" id="aB6-bk-AlA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fAH-7j-R1e" secondAttribute="trailing" constant="-20" id="jsd-vG-qIr"/>
+                            <constraint firstItem="fAH-7j-R1e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="kPY-zx-8PN"/>
                             <constraint firstItem="QF5-Jh-dJT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="v2m-cM-6dc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QF5-Jh-dJT" secondAttribute="trailing" constant="-20" id="w8h-bB-mEA"/>
                         </constraints>
@@ -54,6 +67,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteLabel" destination="fAH-7j-R1e" id="1fA-5C-VSg"/>
                         <outlet property="editButton" destination="Uuz-0E-fod" id="LGx-LH-GMj"/>
                         <outlet property="mapView" destination="QF5-Jh-dJT" id="bK8-ZD-Ptc"/>
                     </connections>
