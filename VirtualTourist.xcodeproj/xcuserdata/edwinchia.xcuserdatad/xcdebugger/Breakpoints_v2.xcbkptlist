@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualTourist/PhotoAlbumViewController.swift"
-            timestampString = "487650026.30304"
+            timestampString = "487682950.756401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "PhotoAlbumViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualTourist/TravelLocationsMapViewController+Helpers.swift"
-            timestampString = "487656972.915908"
+            timestampString = "487681129.404241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "doesPinAlreadyExistsInDatabase(_:longitude:)"
             landmarkType = "5">
          </BreakpointContent>

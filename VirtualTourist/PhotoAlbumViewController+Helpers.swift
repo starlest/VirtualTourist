@@ -48,6 +48,12 @@ extension PhotoAlbumViewController {
         flowLayout.itemSize = CGSizeMake(dimension, dimension)
     }
     
+    func addActivityIndicatorToCell(activityIndicator: UIActivityIndicatorView, cell: UICollectionViewCell) {
+        activityIndicator.startAnimating()
+        activityIndicator.color = UIColor.blueColor()
+        cell.contentView.addSubview(activityIndicator)
+    }
+    
     // MARK: Utilities
     
     func setPinAssociatedWithAnnotation() {
@@ -58,17 +64,46 @@ extension PhotoAlbumViewController {
         let predicate = NSPredicate(format: "\(Globals.PinProperties.Latitude) == \(annotation.coordinate.latitude) AND \(Globals.PinProperties.Longitude) == \(annotation.coordinate.longitude)")
         performFetchRequest(Globals.Entities.Pin, sortDescriptors: sortDescriptors, predicate: predicate)
         pin = fetchedResultsController?.fetchedObjects?.first as! Pin
+        pinPhotos.appendContentsOf(pin.photos?.allObjects as! [Photo])
     }
     
     func attemptToDownloadImages() {
         Client.sharedInstance().downloadLocationPhotosArray(annotation.coordinate.latitude, longitude: annotation.coordinate.longitude) { (photosArray, error) in
             
             if let photosArray = photosArray {
+                
                 self.photosArray = photosArray
+ 
                 performUIUpdatesOnMain({
                     // Set placeholders for downloading images
                     self.collectionView.reloadData()
                 })
+                
+                // Start downloading the associated images
+                performOperationsInBackground({
+    
+                    var counter = 0
+                    for photoDictionary in photosArray {
+                        
+                        if let image = Client.sharedInstance().downloadImageFromPhotoDictionary(photoDictionary) {
+                            let photo = Photo(photoData: UIImagePNGRepresentation(image)!, pin: self.pin, context: self.stack.context)
+                            self.pinPhotos.append(photo)
+                            
+                            performUIUpdatesOnMain({
+                                let indexPath = NSIndexPath(forRow: self.pinPhotos.count - 1, inSection: 0)
+                                
+                                // Only display images on visible cells of the collection view
+                                if let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? PhotoAlbumCollectionViewCell {
+                                    cell.imageView.image = nil
+                                    self.setCellImageWithPhoto(cell, photo: photo)
+                                }
+                            })
+                        }
+                        
+                        counter += 1
+                    }
+                })
+                
             } else {
                 print(error?.localizedDescription)
                 performUIUpdatesOnMain({
@@ -79,10 +114,9 @@ extension PhotoAlbumViewController {
         }
     }
     
-    func addActivityIndicatorToCell(cell: UICollectionViewCell) {
-        let activityIndicator = UIActivityIndicatorView(frame: cell.bounds)
-        activityIndicator.startAnimating()
-        activityIndicator.color = UIColor.blueColor()
-        cell.contentView.addSubview(activityIndicator)
+    func setCellImageWithPhoto(cell: PhotoAlbumCollectionViewCell, photo: Photo) {
+        let image = UIImage(data: photo.imageData!)
+        cell.imageView.image = image
+        cell.activityIndicatorView.stopAnimating()
     }
 }

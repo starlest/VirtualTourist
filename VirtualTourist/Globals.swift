@@ -8,6 +8,8 @@
 
 class Globals {
     
+    static let CellIdentifier = "PhotoCell"
+    
     // MARK: UserDefaults Keys
     struct UserDefaultsKeys {
         static let HasLaunchedBefore = "HasLaunchedBefore"
@@ -21,6 +23,7 @@ class Globals {
     // MARK: Entities
     struct Entities {
         static let Pin = "Pin"
+        static let Photo = "Photo"
     }
     
     // MARK: Pin Properties

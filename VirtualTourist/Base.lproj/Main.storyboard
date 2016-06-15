@@ -96,12 +96,12 @@
                                         <rect key="frame" x="0.0" y="278" width="600" height="278"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fkz-uK-nd8">
-                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="itemSize" width="103" height="76"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
-                                        <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This pin has no images" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nri-xS-OkX">
+                                        <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5wi-5q-r5y">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -109,14 +109,34 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="iVN-uj-4rf">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="iVN-uj-4rf" customClass="PhotoAlbumCollectionViewCell" customModule="VirtualTourist" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="103" height="76"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="76"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZFL-hp-y1K">
+                                                            <rect key="frame" x="0.0" y="0.0" width="103" height="76"/>
+                                                        </imageView>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Wte-DK-Apc">
+                                                            <rect key="frame" x="41" y="28" width="20" height="20"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="ZFL-hp-y1K" secondAttribute="trailing" constant="-8" id="1Qd-FL-LeV"/>
+                                                    <constraint firstItem="Wte-DK-Apc" firstAttribute="centerY" secondItem="iVN-uj-4rf" secondAttribute="centerY" id="9zn-18-bu7"/>
+                                                    <constraint firstItem="ZFL-hp-y1K" firstAttribute="leading" secondItem="iVN-uj-4rf" secondAttribute="leadingMargin" constant="-8" id="QLK-nU-oBv"/>
+                                                    <constraint firstItem="ZFL-hp-y1K" firstAttribute="top" secondItem="iVN-uj-4rf" secondAttribute="topMargin" constant="-8" id="RQs-M8-Jtc"/>
+                                                    <constraint firstItem="Wte-DK-Apc" firstAttribute="centerX" secondItem="iVN-uj-4rf" secondAttribute="centerX" id="e75-xS-fpO"/>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="ZFL-hp-y1K" secondAttribute="bottom" constant="-8" id="mkR-JM-kgU"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="activityIndicatorView" destination="Wte-DK-Apc" id="b2t-MV-ZFI"/>
+                                                    <outlet property="imageView" destination="ZFL-hp-y1K" id="zo3-aU-YVI"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
@@ -139,7 +159,7 @@
                         <outlet property="flowLayout" destination="fkz-uK-nd8" id="VgK-B4-6cD"/>
                         <outlet property="mapView" destination="b7V-Mk-8Me" id="Neo-g1-O4S"/>
                         <outlet property="newCollectionButton" destination="jhW-bs-oKN" id="ayF-ge-YGq"/>
-                        <outlet property="statusLabel" destination="Nri-xS-OkX" id="0qu-fV-Xoc"/>
+                        <outlet property="statusLabel" destination="5wi-5q-r5y" id="lJO-5A-1Yi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ME9-Yv-bXD" userLabel="First Responder" sceneMemberID="firstResponder"/>

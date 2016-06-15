@@ -49,10 +49,6 @@ extension TravelLocationsMapViewController {
     
     func addAnnotation(gestureRecognizer: UIGestureRecognizer) {
         
-        if gestureRecognizer.state != UIGestureRecognizerState.Ended {
-            return
-        }
-        
         let touchPoint = gestureRecognizer.locationInView(mapView)
         let newCoordinates = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
         let latitude = roundDouble(newCoordinates.latitude, numberOfPlaces: 10)

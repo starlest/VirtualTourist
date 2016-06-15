@@ -46,18 +46,12 @@ extension Client {
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }
     
-    func downloadImageFromPhotoDictionaryToCell(photoDictionary: [String:AnyObject], cell: UICollectionViewCell) {
-        performOperationsInBackground({
-            if let imageUrlString = photoDictionary[Client.FlickrResponseKeys.MediumURL] as? String {
-                let image = self.downloadImageFromURL(imageUrlString)
-                if let image = image {
-                    performUIUpdatesOnMain({
-                        let imageView = UIImageView(image: image)
-                        cell.contentView.addSubview(imageView)
-                    })
-                }
-            }
-        })
+    func downloadImageFromPhotoDictionary(photoDictionary: [String:AnyObject]) -> UIImage? {
+        if let imageUrlString = photoDictionary[Client.FlickrResponseKeys.MediumURL] as? String {
+            let image = self.downloadImageFromURL(imageUrlString)
+            return image
+        }
+        return nil
     }
     
     private func downloadImageFromURL(urlString: String) -> UIImage? {
