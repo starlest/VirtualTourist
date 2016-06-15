@@ -17,4 +17,15 @@ class Globals {
         static let MapViewSpanLatitudeDelta = "MapViewSpanLatitudeDelta"
         static let MapViewSpanLongitudeDelta = "MapViewSpanLongitudeDelta"
     }
+    
+    // MARK: Entities
+    struct Entities {
+        static let Pin = "Pin"
+    }
+    
+    // MARK: Pin Properties
+    struct PinProperties {
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+    }
 }

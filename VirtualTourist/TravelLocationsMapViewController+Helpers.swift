@@ -26,11 +26,12 @@ extension TravelLocationsMapViewController {
     
     func loadPins() {
         let sortDescriptors = [
-            NSSortDescriptor(key: "latitude", ascending: true),
-            NSSortDescriptor(key: "longitude", ascending: true)
+            NSSortDescriptor(key: Globals.PinProperties.Latitude, ascending: true),
+            NSSortDescriptor(key: Globals.PinProperties.Longitude, ascending: true)
         ]
         
-        performFetchRequest("Pin", sortDescriptors: sortDescriptors)
+        performFetchRequest(Globals.Entities.Pin, sortDescriptors: sortDescriptors)
+        
         let pins = fetchedResultsController?.fetchedObjects as! [Pin]
         
         for pin in pins {
@@ -46,7 +47,6 @@ extension TravelLocationsMapViewController {
         mapView.addGestureRecognizer(uilgr)
     }
     
-    
     func addAnnotation(gestureRecognizer: UIGestureRecognizer) {
         
         if gestureRecognizer.state != UIGestureRecognizerState.Ended {
@@ -58,6 +58,7 @@ extension TravelLocationsMapViewController {
         let latitude = roundDouble(newCoordinates.latitude, numberOfPlaces: 10)
         let longitude = roundDouble(newCoordinates.longitude, numberOfPlaces: 10)
         
+        // To prevent having multiple pins on the exact location
         if doesPinAlreadyExistsInDatabase(latitude, longitude: longitude) {
             return
         }
@@ -81,11 +82,11 @@ extension TravelLocationsMapViewController {
     
     private func doesPinAlreadyExistsInDatabase(latitude: Double, longitude: Double) -> Bool {
         let sortDescriptors = [
-            NSSortDescriptor(key: "latitude", ascending: true),
-            NSSortDescriptor(key: "longitude", ascending: true)
+            NSSortDescriptor(key: Globals.PinProperties.Latitude, ascending: true),
+            NSSortDescriptor(key: Globals.PinProperties.Longitude, ascending: true)
         ]
-        let predicate = NSPredicate(format: "latitude == \(latitude) AND longitude == \(longitude)")
-        performFetchRequest("Pin", sortDescriptors: sortDescriptors, predicate: predicate)
+        let predicate = NSPredicate(format: "\(Globals.PinProperties.Latitude) == \(latitude) AND \(Globals.PinProperties.Longitude) == \(longitude)")
+        performFetchRequest(Globals.Entities.Pin, sortDescriptors: sortDescriptors, predicate: predicate)
         return fetchedResultsController?.fetchedObjects?.count > 0
     }
     

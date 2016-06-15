@@ -65,6 +65,11 @@ class PhotoAlbumViewController: CoreDataViewController, UICollectionViewDelegate
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as UICollectionViewCell
+        cell.contentView.alpha = 0.5
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
     }

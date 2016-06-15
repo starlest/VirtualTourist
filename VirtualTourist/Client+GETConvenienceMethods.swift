@@ -16,7 +16,7 @@ extension Client {
         let methodParameters: [String:String!] = createSearchByLocationMethodParameters(latitude, longitude: longitude)
         let request = NSURLRequest(URL: flickrURLFromParameters(methodParameters))
         let task = taskForGetMethod(request: request) { (results, error) in
-            
+
             guard let photosArray = self.attemptToGetPhotosArray(results, error: error, completionHandler: completionHandler) else
             {
                 // completion handler was handled in attemptToGetPhotosArray
@@ -90,10 +90,10 @@ extension Client {
     }
     
     private func bboxString(latitude: Double, longitude: Double) -> String {
-        let minimumLon = longitude - Client.Flickr.SearchBBoxHalfWidth
-        let minimumLat = latitude - Client.Flickr.SearchBBoxHalfHeight
-        let maximumLon = longitude + Client.Flickr.SearchBBoxHalfWidth
-        let maximumLat = latitude + Client.Flickr.SearchBBoxHalfHeight
+        let minimumLon = max(longitude - Client.Flickr.SearchBBoxHalfWidth, Client.Flickr.SearchLonRange.0)
+        let minimumLat = max(latitude - Client.Flickr.SearchBBoxHalfHeight, Client.Flickr.SearchLatRange.0)
+        let maximumLon = min(longitude + Client.Flickr.SearchBBoxHalfWidth, Client.Flickr.SearchLonRange.1)
+        let maximumLat = min(latitude + Client.Flickr.SearchBBoxHalfHeight, Client.Flickr.SearchLatRange.1)
         return "\(minimumLon),\(minimumLat),\(maximumLon),\(maximumLat)"
     }
     
@@ -102,34 +102,13 @@ extension Client {
         completionHandler(photosArray: nil, error: NSError(domain: domain, code: errorCode, userInfo: userInfo))
     }
     
-    private func attemptToGetPhotosArray(results: AnyObject!, error: NSError?, completionHandler: (photosArray: [[String:AnyObject]]?, error: NSError?) -> Void) -> [[String:AnyObject]]? {
-        /* GUARD: Was there an error? */
-        guard error == nil else {
-            self.sendError("There was an error encountered.", domain: "attemptToGetPhotosArray", completionHandler: completionHandler)
-            return nil
-        }
-        
-        /* GUARD: Are the "photos" and "photo" keys in our result? */
-        guard let photosDictionary = results[Client.FlickrResponseKeys.Photos] as? [String:AnyObject], photosArray = photosDictionary["photo"] as? [[String:AnyObject]] else {
-            self.sendError("Cannot find keys '\(Client.FlickrResponseKeys.Photos) and '\(Client.FlickrResponseKeys.Photo)' in \(results)", domain: "attemptToGetPhotosArray", completionHandler: completionHandler)
-            return nil
-        }
-        
-        if photosArray.count == 0 {
-            self.sendError("No photos found. Please search again.", domain: "attemptToGetPhotosArray", errorCode: Client.ErrorCodes.NoImages, completionHandler: completionHandler)
-            return nil
-        }
-        
-        return photosArray
-    }
-    
     private func getImagesFromPageNumber(methodParameters: [String:AnyObject], withPageNumber: Int, completionHandler: (photosArray: [[String:AnyObject]]?, error: NSError?) -> Void) {
-        
+
         var methodParams = methodParameters
         methodParams[Client.FlickrParameterKeys.Page] = "\(withPageNumber)"
-
+        
         let request = NSURLRequest(URL: flickrURLFromParameters(methodParams))
-
+        
         let task = taskForGetMethod(request: request) { (results, error) in
             
             if let photosArray = self.attemptToGetPhotosArray(results, error: error, completionHandler: completionHandler)
@@ -142,5 +121,27 @@ extension Client {
         }
         
         task.resume()
+    }
+    
+    private func attemptToGetPhotosArray(results: AnyObject!, error: NSError?, completionHandler: (photosArray: [[String:AnyObject]]?, error: NSError?) -> Void) -> [[String:AnyObject]]? {
+        
+        /* GUARD: Was there an error? */
+        guard error == nil else {
+            self.sendError("There was an error encountered.", domain: "attemptToGetPhotosArray", completionHandler: completionHandler)
+            return nil
+        }
+        
+        /* GUARD: Are the "photos" and "photo" keys in our result? */
+        guard let photosDictionary = results[Client.FlickrResponseKeys.Photos] as? [String:AnyObject], photosArray = photosDictionary[Client.FlickrResponseKeys.Photo] as? [[String:AnyObject]] else {
+            self.sendError("Cannot find keys '\(Client.FlickrResponseKeys.Photos) and '\(Client.FlickrResponseKeys.Photo)' in \(results)", domain: "attemptToGetPhotosArray", completionHandler: completionHandler)
+            return nil
+        }
+        
+        if photosArray.count == 0 {
+            self.sendError("No photos found. Please search again.", domain: "attemptToGetPhotosArray", errorCode: Client.ErrorCodes.NoImages, completionHandler: completionHandler)
+            return nil
+        }
+        
+        return photosArray
     }
 }

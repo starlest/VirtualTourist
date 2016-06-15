@@ -52,11 +52,11 @@ extension PhotoAlbumViewController {
     
     func setPinAssociatedWithAnnotation() {
         let sortDescriptors = [
-            NSSortDescriptor(key: "latitude", ascending: true),
-            NSSortDescriptor(key: "longitude", ascending: true)
+            NSSortDescriptor(key: Globals.PinProperties.Latitude, ascending: true),
+            NSSortDescriptor(key: Globals.PinProperties.Longitude, ascending: true)
         ]
-        let predicate = NSPredicate(format: "latitude == \(annotation.coordinate.latitude) AND longitude == \(annotation.coordinate.longitude)")
-        performFetchRequest("Pin", sortDescriptors: sortDescriptors, predicate: predicate)
+        let predicate = NSPredicate(format: "\(Globals.PinProperties.Latitude) == \(annotation.coordinate.latitude) AND \(Globals.PinProperties.Longitude) == \(annotation.coordinate.longitude)")
+        performFetchRequest(Globals.Entities.Pin, sortDescriptors: sortDescriptors, predicate: predicate)
         pin = fetchedResultsController?.fetchedObjects?.first as! Pin
     }
     
@@ -70,6 +70,7 @@ extension PhotoAlbumViewController {
                     self.collectionView.reloadData()
                 })
             } else {
+                print(error?.localizedDescription)
                 performUIUpdatesOnMain({
                     self.statusLabel.hidden = false
                     self.statusLabel.text = error?.code == Client.ErrorCodes.NoImages ? "This pin has no images." : "Failed to process request. Please try again later. \n \(error?.code)"

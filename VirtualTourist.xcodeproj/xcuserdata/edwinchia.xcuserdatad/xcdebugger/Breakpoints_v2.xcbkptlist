@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualTourist/Client+GETConvenienceMethods.swift"
-            timestampString = "487646260.619153"
+            timestampString = "487667246.012883"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualTourist/TravelLocationsMapViewController+Helpers.swift"
-            timestampString = "487655876.479451"
+            timestampString = "487656972.915908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "doesPinAlreadyExistsInDatabase(_:longitude:)"
             landmarkType = "5">
          </BreakpointContent>
