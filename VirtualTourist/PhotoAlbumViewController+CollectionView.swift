@@ -33,11 +33,20 @@ extension PhotoAlbumViewController {
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoAlbumCollectionViewCell
+        
+        /* GUARD: Disallow selection if image is still downloading */
+        guard let photo = pinPhotos[safe: indexPath.row] else {
+            collectionView.deselectItemAtIndexPath(indexPath, animated: false)
+            return
+        }
+
         if collectionView.indexPathsForSelectedItems()?.count == 1 {
             newCollectionButton.title = "Remove Selected Pictures"
             selectionDeletionMode = true
         }
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoAlbumCollectionViewCell
+
         cell.imageView.alpha = 0.5
     }
     
@@ -46,6 +55,7 @@ extension PhotoAlbumViewController {
             newCollectionButton.title = "New Collection"
             selectionDeletionMode = false
         }
+        
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoAlbumCollectionViewCell
         cell.imageView.alpha = 1.0
     }
