@@ -69,25 +69,36 @@ extension TravelLocationsMapViewController {
     
     func addAnnotation(gestureRecognizer: UIGestureRecognizer) {
         
-        let touchPoint = gestureRecognizer.locationInView(mapView)
-        let newCoordinates = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
-        let latitude = roundDouble(newCoordinates.latitude, numberOfPlaces: 10)
-        let longitude = roundDouble(newCoordinates.longitude, numberOfPlaces: 10)
-        
-        // To prevent having multiple pins on the exact location
-        if doesPinAlreadyExistsInDatabase(latitude, longitude: longitude) {
-            return
+        if gestureRecognizer.state == UIGestureRecognizerState.Began {
+            let touchPoint = gestureRecognizer.locationInView(mapView)
+            let newCoordinates = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
+            let latitude = roundDouble(newCoordinates.latitude, numberOfPlaces: 10)
+            let longitude = roundDouble(newCoordinates.longitude, numberOfPlaces: 10)
+    
+            if doesPinAlreadyExistsInDatabase(latitude, longitude: longitude) {
+                return
+            }
+            
+            let pin = Pin(latitude: latitude, longitude: longitude, context: fetchedResultsController!.managedObjectContext)
+            stack.save()
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: pin.latitude as! Double, longitude: pin.longitude as! Double)
+            mapView.addAnnotation(annotation)
         }
-        
-        let pin = Pin(latitude: latitude, longitude: longitude, context: fetchedResultsController!.managedObjectContext)
-
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: pin.latitude as! Double, longitude: pin.longitude as! Double)
-
-        mapView.addAnnotation(annotation)
-        
-        stack.save()
     }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        
+    }
+    
+//    The other UILongPressGestureRecognizer states can also be utilized here.
+//    To create a drag effect you could do the following for each state:
+//    
+//    On state .Began , the pin will be created.
+//    On state .Changed , At this point you update the first pin coordinates to change the position of the pin
+//    On state .Ended , In this state the user has lifted the finger and you are free to persist the pin.
+//    In addition the draggable property and mapView(_: annotationView: didChangeDragState: fromOldState: ) could be used.
     
     // To ensure the values saved into CoreData have the same precision
     private func roundDouble(number: Double, numberOfPlaces: Double) -> Double {

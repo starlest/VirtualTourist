@@ -15,8 +15,8 @@ extension PhotoAlbumViewController {
         if pin.photos?.count == 0 {
             attemptToDownloadImages()
         } else {
-            pinPhotos = pin.photos?.allObjects as! [Photo]
-            collectionView.reloadData()
+            self.pinPhotos = self.pin.photos?.allObjects as! [Photo]
+            self.collectionView.reloadData()
         }
     }
     
@@ -52,24 +52,31 @@ extension PhotoAlbumViewController {
     
     func downloadPhotosArrayImagesInBackground() {
         
-        performOperationsInBackground({
-            for photoDictionary in self.photosArray {
-                
+        for photoDictionary in self.photosArray {
+            
+            var photo: Photo!
+            
+            stack.performBackgroundBatchOperationAndWait({ (workerContext) in
                 if let image = Client.sharedInstance().downloadImageFromPhotoDictionary(photoDictionary) {
-                    let photo = Photo(photoData: UIImagePNGRepresentation(image)!, creationDate: NSDate(timeIntervalSinceNow: 0), pin: self.pin, context: self.stack.context)
-                    self.pinPhotos.append(photo)
-                
-                    // Only display images on visible cells of the collection view
-                    let indexPath = NSIndexPath(forRow: self.pinPhotos.count - 1, inSection: 0)
-                    if let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? PhotoAlbumCollectionViewCell {
-                        performUIUpdatesOnMain({
-                            cell.imageView.image = nil
-                            self.setCellImageWithPhoto(cell, photo: photo)
-                        })
-                    }
+                    let pin = self.stack.backgroundContext.objectWithID(self.pin.objectID) as! Pin
+                    photo = Photo(photoData: UIImagePNGRepresentation(image)!, creationDate: NSDate(timeIntervalSinceNow: 0), pin: pin, context: self.stack.backgroundContext)
                 }
-            }
-        })
+            })
+            
+            performUIUpdatesOnMain({
+                
+                // Retrieve the newly created photo in the main queue
+                let photo = self.stack.context.objectWithID(photo.objectID) as! Photo
+                self.pinPhotos.append(photo)
+                
+                // Only display images on visible cells of the collection view
+                let indexPath = NSIndexPath(forRow: self.pinPhotos.count - 1, inSection: 0)
+                if let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? PhotoAlbumCollectionViewCell {
+                    cell.imageView.image = nil
+                    self.setCellImageWithPhoto(cell, photo: photo)
+                }
+            })
+        }
     }
     
     func setCellImageWithPhoto(cell: PhotoAlbumCollectionViewCell, photo: Photo) {
